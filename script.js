@@ -95,7 +95,6 @@ function bubbleSort(array) {
     for (let i = array.length; i > 0; i--) {
         let noSwaps = true;
         for (let j = 0; j < i - 1; j++) {
-            console.log(array[j], array[j + 1])
             if (array[j] > array[j + 1]) {
                 swap(array, j, (j + 1))
                 noSwaps = false;
@@ -112,4 +111,16 @@ function randomArray(length = 10) {
         randomArray.push(Math.floor(Math.random() * 100) + 1)
     }
     return randomArray;
+}
+
+function selectionSort(array) {
+    let smallest;
+    for (let i = 0; i < array.length - 1; i++) {
+        smallest = i;
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[smallest]) smallest = j;
+        }
+        swap(array, i, smallest)
+    }
+    return array;
 }
