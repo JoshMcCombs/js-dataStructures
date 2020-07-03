@@ -14,6 +14,17 @@
 //     return array;
 // }
 
+function makePass(num) {
+    let pass = '';
+    let char;
+    const arr = `1234567890aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ!@#$%^&*()`.split('');
+    for (let i = 0; i < num; i++) {
+      char = arr[Math.floor(Math.random() * arr.length)];
+      pass = pass.concat(char);
+    }
+    return pass;
+  }
+
 function arrayToList(array) {
     let list = null;
     for (let i = array.length - 1; i >= 0; i--) {
@@ -114,13 +125,13 @@ function randomArray(length = 10) {
 }
 
 function selectionSort(array) {
-    let smallest;
-    for (let i = 0; i < array.length - 1; i++) {
-        smallest = i;
+    let lowest;
+    for (let i = 0; i < array.length; i++) {
+        lowest = i;
         for (let j = i + 1; j < array.length; j++) {
-            if (array[j] < array[smallest]) smallest = j;
+            if (array[j] < array[lowest]) lowest = j;
         }
-        swap(array, i, smallest)
+        if (lowest !== i) swap(array, i, lowest);
     }
     return array;
 }
