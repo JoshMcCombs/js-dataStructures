@@ -135,3 +135,26 @@ function selectionSort(array) {
     }
     return array;
 }
+
+//Write a function to find the longest common prefix string amongst an array of strings.
+// If there is no common prefix, return an empty string "".
+
+const longestCommonPrefix = function(str) {
+    let longest = '';
+    let char;
+    if (!str.length) return '';
+    for (let i = 0; i < str[0].length; i++) {
+        char = str[0][i]
+        for (let j = 0; j < str.length; j++) {
+            if (str[j][i] !== char) {
+                return longest;
+            }
+        }
+        longest = longest.concat(char);
+    }
+    return longest;
+};
+
+// let arrOfStrings = ['dog', 'done', 'does', 'don\'t'];
+let arrOfStrings = 'abc';
+console.log(longestCommonPrefix(arrOfStrings));
