@@ -188,7 +188,7 @@ class SinglyLinkedList {
         return true;
 
     }
-    del(index) {
+    delete(index) {
         let [node, prev] = [this.head, null];
         if (index === 0) return this.shift();
         if (index === this.length) return this.pop();
@@ -208,19 +208,35 @@ class SinglyLinkedList {
         }
         return node.value;
     }
-    insert(value, index) {
+    insert(index, value) {
         let [node, prev] = [this.head, null];
-        if (index < 0 || index > this.length - 1) return undefined;
+        if (index < 0 || index > this.length) return undefined;
         if (index === 0) return this.unshift(value);
-        if (index === this.length - 1) return this.push(value);
+        if (index === this.length) return this.push(value);
         for (let i = 0; i < index; i++) {
             // TODO: Finish loop, update node to node.next
             // create new node(val, node), set prev.next to new node
+            prev = node;
+            node = node.next;
         }
+        prev.next = new Node(value, node);
+        this.length++;
+        return true;
     }
-
-
-    print() {
+    reverse() {
+        if (this.length < 2) return this;
+        let node = this.head;
+        let prev, temp = null;
+        [this.head, this.tail] = [this.tail, this.head];
+        for (let i = 0; i < this.length; i++) {
+            temp = node.next;
+            node.next = prev;
+            prev = node;
+            node = temp;
+        }
+        return this;
+    }
+    printAsArray() {
         let node = this.head;
         const items = [];
         for (let i = 0; i < this.length; i++) {
@@ -231,18 +247,19 @@ class SinglyLinkedList {
     }
 }
 
-let list = new SinglyLinkedList();
-list.push('zero')
-list.push('one')
-list.push('two')
-list.push('three')
-list.push('four')
-list.push('five')
-list.push('six')
-// list.reverse();
-// list.unshift('three')
-// list.unshift('two')
-// list.unshift('one')
-// list.unshift('zero')
-list.print()
+let sList = new SinglyLinkedList();
+// sList.push('zero')
+// sList.push('one')
+// sList.push('two')
+// sList.push('three')
+// sList.push('four')
+// sList.push('five')
+// sList.push('six')
+// sList.insert(4, 'insert')
+// sList.reverse();
+// sList.unshift('three')
+// sList.unshift('two')
+// sList.unshift('one')
+// sList.unshift('zero')
+
 
