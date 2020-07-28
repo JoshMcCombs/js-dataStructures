@@ -90,18 +90,20 @@ class DoublyLinkedList {
                 prev = node;
                 node = node.previous;
             }
-            prev = new Node(value, prev, node);
-            node.next = prev;
-            this.length++;
-            return true;
+            node = new Node(value, node, prev);
+            prev.next = node;
         } else {
             // WIP
-            let node = this.head;
+            let [node, prev]= [this.head, null];
             for (let i = 0; i < index; i++) {
+                prev = node;
                 node = node.next;
             }
-            return node.value;
+            node = new Node(value, node, prev);
+            prev.next = node;
         }
+        this.length++
+        return this;
     }
     
 
