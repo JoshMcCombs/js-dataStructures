@@ -81,8 +81,7 @@ class DoublyLinkedList {
         if (index > this.length - 1 || index < 0) return undefined;
         else if (index === 0) return this.unshift(value);
         else if (index === this.length) return this.push(value);
-        // TODO: Either simplify and get rid of optimization
-        // or figure out why cuts off last value 
+        // TODO: Either simplify or get rid of optimization
         else if (index > this.length / 2) {
             let [node, prev]= [this.tail, null];
             index = this.length - index;
@@ -93,7 +92,6 @@ class DoublyLinkedList {
             node = new Node(value, node, prev);
             prev.next = node;
         } else {
-            // WIP
             let [node, prev]= [this.head, null];
             for (let i = 0; i < index; i++) {
                 prev = node;
