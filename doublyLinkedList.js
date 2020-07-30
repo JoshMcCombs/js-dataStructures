@@ -117,7 +117,12 @@ class DoublyLinkedList {
         this.length--;
         return node.value;
     }
-
+    toList(...items) {
+        for (let item of items) {
+            this.push(item)
+        }
+        return this;
+    }
     print() {
         if (!this.head) return undefined;
         const items = [];
@@ -131,13 +136,4 @@ class DoublyLinkedList {
 }
 
 let dList = new DoublyLinkedList;
-dList.unshift('three');
-dList.unshift('two');
-dList.unshift('one');
-dList.unshift('zero');
-dList.push('four');
-dList.push('five');
-dList.push('six');
-// dList.push('zero');
-// dList.push('one');
-// dList.push('two');
+dList.toList('zero', 'one', 'two', 'three')
