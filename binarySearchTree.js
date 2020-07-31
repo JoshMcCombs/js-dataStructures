@@ -1,4 +1,4 @@
-class Node {
+class TreeNode {
     constructor(value) {
         this.value = value;
         this.left = null;
@@ -10,39 +10,12 @@ class BST {
     constructor() {
         this.root = null;
     }
-
-    // insert(value) {
-    //     const newNode = new Node(value)
-    //     if (!this.root) {
-    //         this.root = newNode;
-    //         return this;
-    //     } else {
-    //         let current = this.root;
-    //         while (true) {
-    //             if (value === current.value) return undefined;
-    //             if (value < current.value) {
-    //                 if (current.left === null) {
-    //                     current.left = newNode;
-    //                     return this;
-    //                 } 
-    //                 current = current.left;             
-    //             } else if (value > current.value) {
-    //                 if (current.right === null) {
-    //                     current.right = newNode;
-    //                     return this;
-    //                 }
-    //                 current = current.right;
-    //             }
-    //         }
-    //     }
-    // }
     insert(value) {
-        const newNode = new Node(value);
+        const newNode = new TreeNode(value);
+        let node = this.root;
         if (!this.root) {
             this.root = newNode;
-            return this;
         } else {
-            let node = this.root;
             while (true) {
                 if (value === node.value) return undefined;
                 else if (value < node.value) {
@@ -51,28 +24,28 @@ class BST {
                         return this;
                     }
                     node = node.left;
-                } else {
+                }
+                else {
                     if (!node.right) {
                         node.right = newNode;
                         return this;
                     }
                     node = node.right;
                 }
-
             }
         }
     }
-    find(value) {
+    has(value) {
         let node = this.root;
-        let bool = true;
-        if (!this.root) return undefined;
-        while (bool) {
-            if (!node) return false;
-            else if (node.value === value) return true;
-            else if (value < node.value) {
+        if (typeof(value) !== typeof(node.value)) return 'Invalid input';
+        while(true) {
+            if (value === node.value) return true;
+            if (value < node.value) {
+                if (!node.left) return false;
                 node = node.left;
             }
             else if (value > node.value) {
+                if (!node.right) return false;
                 node = node.right;
             }
         }
