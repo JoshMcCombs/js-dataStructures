@@ -17,6 +17,9 @@ class BST {
             let node = this.root;
             while (true) {
                 if (node.value === value) return undefined;
+                else if (typeof(value) !== typeof(this.root.value)) {
+                    return console.error(`${typeof(value)} incompatible with type ${typeof(this.root.value)}`);
+                }
                 else if (value < node.value) {
                     if (node.left) node = node.left;
                     else {
@@ -104,10 +107,3 @@ class BST {
         return data;
     }
 }
-
-let bst = new BST();
-bst.toTree(10,8,15,6,9,13,16);
-
-//      10
-//    8    15
-//   6 9  13 16

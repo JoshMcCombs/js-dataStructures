@@ -1,4 +1,4 @@
-class Node {
+class DoublyLinkedNode {
     constructor(value,
                 next = null,
                 previous = null
@@ -27,7 +27,7 @@ class DoublyLinkedList {
     //     return this;
     // }
     push(value) {
-        const newNode = new Node(value);
+        const newNode = new DoublyLinkedNode(value);
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
@@ -48,7 +48,7 @@ class DoublyLinkedList {
     }
     unshift(value) {
         if (this.length < 1) return this.push(value);
-        this.head = new Node(value, this.head, null);
+        this.head = new DoublyLinkedNode(value, this.head, null);
         this.length++;
         return true;
     }
@@ -81,7 +81,6 @@ class DoublyLinkedList {
         if (index > this.length - 1 || index < 0) return undefined;
         else if (index === 0) return this.unshift(value);
         else if (index === this.length) return this.push(value);
-        // TODO: Either simplify or get rid of optimization
         else if (index > this.length / 2) {
             let [node, prev]= [this.tail, null];
             index = this.length - index;
@@ -89,7 +88,7 @@ class DoublyLinkedList {
                 prev = node;
                 node = node.previous;
             }
-            node = new Node(value, node, prev);
+            node = new DoublyLinkedNode(value, node, prev);
             prev.next = node;
         } else {
             let [node, prev]= [this.head, null];
@@ -97,7 +96,7 @@ class DoublyLinkedList {
                 prev = node;
                 node = node.next;
             }
-            node = new Node(value, node, prev);
+            node = new DoublyLinkedNode(value, node, prev);
             prev.next = node;
         }
         this.length++
@@ -134,6 +133,3 @@ class DoublyLinkedList {
         return items;
     }
 }
-
-let dList = new DoublyLinkedList;
-dList.toList('zero', 'one', 'two', 'three')
